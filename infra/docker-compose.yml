@@ -1,0 +1,97 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-dcc}
+      POSTGRES_USER: ${POSTGRES_USER:-dcc}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-dcc_pass}
+    ports: [ "5432:5432" ]
+    volumes:
+      - dcc_pg:/var/lib/postgresql/data
+      - ./postgres/migrations:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-dcc} -d ${POSTGRES_DB:-dcc}" ]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  redis:
+    image: redis:7-alpine
+    ports: [ "6379:6379" ]
+    volumes: [ dcc_redis:/data ]
+    command: [ "redis-server", "--appendonly", "yes" ]
+
+  qdrant:
+    image: qdrant/qdrant:latest
+    ports: [ "6333:6333" ]
+    volumes: [ dcc_qdrant:/qdrant/storage ]
+
+  agent_runtime:
+    build: ../agent-runtime
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_started
+      qdrant:
+        condition: service_started
+    environment:
+      DCC_PG_DSN: ${DCC_PG_DSN}
+      DCC_REDIS_URL: ${DCC_REDIS_URL}
+      DCC_QDRANT_URL: ${DCC_QDRANT_URL}
+      DCC_WORKSPACE_DIR: /data/workspace
+      DCC_TICK_SECONDS: ${DCC_TICK_SECONDS:-60}
+      DCC_AGENTS: ${DCC_AGENTS:-3}
+
+      # GitHub
+      GITHUB_TOKEN: ${GITHUB_TOKEN}
+      GITHUB_OWNER: ${GITHUB_OWNER}
+      REPOS_ALLOWLIST: ${REPOS_ALLOWLIST}
+      DEFAULT_BASE_BRANCH: ${DEFAULT_BASE_BRANCH:-main}
+
+      # Worker pool (OpenClaw)
+      WORKER_SHARED_SECRET: ${WORKER_SHARED_SECRET}
+      WORKER_REQUEST_TIMEOUT_SECONDS: ${WORKER_REQUEST_TIMEOUT_SECONDS:-600}
+
+      # Node pipeline defaults (can be overridden per project governance JSON)
+      RUN_LINT: ${RUN_LINT:-true}
+      RUN_TESTS: ${RUN_TESTS:-true}
+      RUN_BUILD: ${RUN_BUILD:-true}
+
+      # LLM placeholder
+      LLM_PROVIDER: ${LLM_PROVIDER:-openai}
+      OPENAI_API_KEY: ${OPENAI_API_KEY:-}
+      OPENROUTER_API_KEY: ${OPENROUTER_API_KEY:-}
+      LLM_MODEL: ${LLM_MODEL:-gpt-4.1-mini}
+    volumes:
+      - dcc_workspace:/data/workspace
+
+  openclaw_worker:
+    build: ../openclaw-worker
+    environment:
+      WORKER_SHARED_SECRET: ${WORKER_SHARED_SECRET}
+      GITHUB_TOKEN: ${GITHUB_TOKEN}
+      WORKDIR: /data/workdir
+    volumes:
+      - dcc_worker_data:/data/workdir
+    ports: [ "8080:8080" ]
+
+  dashboard:
+    build: ../dashboard
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_started
+    environment:
+      DCC_PG_DSN: ${DCC_PG_DSN}
+      DCC_REDIS_URL: ${DCC_REDIS_URL}
+      DASHBOARD_ADMIN_TOKEN: ${DASHBOARD_ADMIN_TOKEN:-change_me}
+    ports: [ "3000:3000" ]
+
+volumes:
+  dcc_pg:
+  dcc_redis:
+  dcc_qdrant:
+  dcc_workspace:
+  dcc_worker_data:

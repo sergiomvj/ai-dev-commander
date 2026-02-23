@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Agent Efficiency Monitor - AI-Dev Commander</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#305ee8",
+                        "accent-yellow": "#facc15",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#111521",
+                        "glass-white": "rgba(255, 255, 255, 0.4)",
+                        "glass-blue": "rgba(48, 94, 232, 0.1)",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        .glass-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.4) 100%);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .glass-button-primary {
+            background: rgba(48, 94, 232, 0.9);
+            backdrop-filter: blur(4px);
+            color: white;
+            transition: all 0.3s ease;
+        }
+        .glass-button-primary:hover {
+            background: rgba(48, 94, 232, 1);
+            box-shadow: 0 0 20px rgba(48, 94, 232, 0.3);
+        }
+        .glass-button-accent {
+            background: rgba(250, 204, 21, 0.9);
+            backdrop-filter: blur(4px);
+            color: #111521;
+            transition: all 0.3s ease;
+        }
+        .glass-button-accent:hover {
+            background: rgba(250, 204, 21, 1);
+            box-shadow: 0 0 20px rgba(250, 204, 21, 0.3);
+        }
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            display: inline-block;
+        }
+        body {
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(48, 94, 232, 0.05) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(250, 204, 21, 0.05) 0px, transparent 50%);
+            background-attachment: fixed;
+        }
+    </style>
+</head>
+<body class="bg-background-light font-display text-slate-900 min-h-screen">
+<div class="flex h-screen overflow-hidden">
+<!-- Sidebar Navigation -->
+<aside class="w-64 glass-panel border-r border-slate-200 hidden lg:flex flex-col">
+<div class="p-6 flex items-center gap-3">
+<div class="size-8 bg-primary rounded-lg flex items-center justify-center text-white">
+<span class="material-symbols-outlined text-xl">keyboard_command_key</span>
+</div>
+<h1 class="text-lg font-bold tracking-tight text-primary">AI-Dev</h1>
+</div>
+<nav class="flex-1 px-4 py-4 space-y-1">
+<a class="flex items-center gap-3 px-3 py-2 text-sm font-semibold rounded-lg bg-primary/10 text-primary" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+                    Dashboard
+                </a>
+<a class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-600 hover:bg-slate-100 rounded-lg" href="#">
+<span class="material-symbols-outlined">smart_toy</span>
+                    Agents
+                </a>
+<a class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-600 hover:bg-slate-100 rounded-lg" href="#">
+<span class="material-symbols-outlined">analytics</span>
+                    Reports
+                </a>
+<a class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-600 hover:bg-slate-100 rounded-lg" href="#">
+<span class="material-symbols-outlined">security</span>
+                    Security
+                </a>
+<a class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-600 hover:bg-slate-100 rounded-lg" href="#">
+<span class="material-symbols-outlined">settings</span>
+                    Settings
+                </a>
+</nav>
+<div class="p-4 mt-auto">
+<div class="p-4 glass-card rounded-xl border border-primary/10">
+<p class="text-xs font-bold text-primary uppercase tracking-wider mb-2">System Health</p>
+<div class="flex items-center justify-between mb-1">
+<span class="text-sm font-medium">Core Nodes</span>
+<span class="text-xs text-green-600 font-bold">STABLE</span>
+</div>
+<div class="w-full bg-slate-200 h-1.5 rounded-full overflow-hidden">
+<div class="bg-primary h-full w-[94%]"></div>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 flex flex-col overflow-y-auto">
+<!-- Header -->
+<header class="glass-panel sticky top-0 z-10 px-8 py-4 flex items-center justify-between border-b border-slate-200">
+<div class="flex flex-col">
+<h2 class="text-2xl font-black text-slate-900 tracking-tight leading-none">Agent Efficiency Monitor</h2>
+<p class="text-sm text-slate-500 font-medium">V9.0.1 • Live Diagnostic Stream</p>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-sm">search</span>
+<input class="pl-10 pr-4 py-2 bg-white/50 border border-slate-200 rounded-lg text-sm w-64 focus:ring-2 focus:ring-primary focus:border-transparent transition-all" placeholder="Search agents..." type="text"/>
+</div>
+<div class="flex items-center gap-2">
+<button class="p-2 glass-card rounded-lg text-slate-600 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<div class="size-10 rounded-full bg-slate-200 border-2 border-white shadow-sm overflow-hidden">
+<img alt="User Profile" class="w-full h-full object-cover" data-alt="Professional user profile avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAgfwU7_LpiKGSaX2IOf9G5MnCMtJcMX_J9sVYX8_b0tRlk6ssklIaboe1kC2VZfB9pXCv6n5LlYSPajsV3ocWs06Z-0gKyNfZ2ndmacXPDnPceMn3iviIrjri_n0NFt0F_q4Y5XGh65srgpX8Ko8O_ZVV6FE7eTYHzUHsEZ3L-T27gDCkgZKI_45XySE-UqEIJNd3s35sTeNoT0fJZMUopu3Dapq1fR5GCxmsnkaIHeiqtl9QNzhNt_vogI27_DhM2CgQawyuGZ6S0"/>
+</div>
+</div>
+</div>
+</header>
+<div class="p-8 space-y-8">
+<!-- Action Bar -->
+<div class="flex flex-wrap items-center justify-between gap-4">
+<div class="flex gap-2">
+<button class="glass-button-primary px-6 py-2.5 rounded-lg flex items-center gap-2 text-sm font-bold">
+<span class="material-symbols-outlined text-lg">assessment</span>
+                            Measure Efficiency
+                        </button>
+<button class="glass-button-accent px-6 py-2.5 rounded-lg flex items-center gap-2 text-sm font-bold shadow-sm">
+<span class="material-symbols-outlined text-lg">summarize</span>
+                            Generate Status Report
+                        </button>
+</div>
+<div class="flex bg-slate-200/50 p-1 rounded-xl glass-card">
+<button class="px-4 py-1.5 text-xs font-bold bg-white text-primary shadow-sm rounded-lg uppercase tracking-tight">Real-time</button>
+<button class="px-4 py-1.5 text-xs font-bold text-slate-500 uppercase tracking-tight">Hourly</button>
+<button class="px-4 py-1.5 text-xs font-bold text-slate-500 uppercase tracking-tight">Daily</button>
+</div>
+</div>
+<!-- Status Summary -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="glass-card p-6 rounded-xl border-l-4 border-l-primary relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-6xl">check_circle</span>
+</div>
+<div class="flex items-center justify-between mb-4">
+<h3 class="text-sm font-bold text-slate-500 uppercase tracking-wider">On-track</h3>
+<span class="text-primary bg-primary/10 px-2 py-0.5 rounded text-[10px] font-black tracking-tighter">72% TOTAL</span>
+</div>
+<p class="text-4xl font-black text-slate-900 leading-none">92 Agents</p>
+<div class="mt-4 flex items-center gap-2 text-green-600 font-bold text-sm">
+<span class="material-symbols-outlined text-sm">trending_up</span>
+<span>+4.2% from peak</span>
+</div>
+</div>
+<div class="glass-card p-6 rounded-xl border-l-4 border-l-accent-yellow relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-6xl">pending</span>
+</div>
+<div class="flex items-center justify-between mb-4">
+<h3 class="text-sm font-bold text-slate-500 uppercase tracking-wider">Delayed</h3>
+<span class="text-accent-yellow bg-accent-yellow/10 px-2 py-0.5 rounded text-[10px] font-black tracking-tighter text-amber-600">18% TOTAL</span>
+</div>
+<p class="text-4xl font-black text-slate-900 leading-none">23 Agents</p>
+<div class="mt-4 flex items-center gap-2 text-amber-600 font-bold text-sm">
+<span class="material-symbols-outlined text-sm">warning</span>
+<span>Critical block on Node-B</span>
+</div>
+</div>
+<div class="glass-card p-6 rounded-xl border-l-4 border-l-indigo-500 relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-6xl">rocket_launch</span>
+</div>
+<div class="flex items-center justify-between mb-4">
+<h3 class="text-sm font-bold text-slate-500 uppercase tracking-wider">Ahead</h3>
+<span class="text-indigo-500 bg-indigo-500/10 px-2 py-0.5 rounded text-[10px] font-black tracking-tighter">10% TOTAL</span>
+</div>
+<p class="text-4xl font-black text-slate-900 leading-none">13 Agents</p>
+<div class="mt-4 flex items-center gap-2 text-indigo-500 font-bold text-sm">
+<span class="material-symbols-outlined text-sm">auto_awesome</span>
+<span>Optimized 12 workflows</span>
+</div>
+</div>
+</div>
+<!-- Main Performance Quadrant -->
+<div class="grid grid-cols-1 xl:grid-cols-2 gap-8">
+<!-- Performance Scoring Section -->
+<div class="glass-panel p-8 rounded-2xl border border-slate-200">
+<div class="flex items-center justify-between mb-8">
+<div>
+<h3 class="text-xl font-bold text-slate-900">Performance Scoring</h3>
+<p class="text-sm text-slate-500">Core intelligence metrics weighted by impact</p>
+</div>
+<span class="bg-primary/5 text-primary p-2 rounded-lg">
+<span class="material-symbols-outlined">query_stats</span>
+</span>
+</div>
+<div class="space-y-8">
+<div class="space-y-3">
+<div class="flex items-center justify-between font-bold text-sm">
+<span class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">schedule</span>
+                                        Punctuality
+                                    </span>
+<span class="text-slate-900">98%</span>
+</div>
+<div class="h-2 w-full bg-slate-100 rounded-full overflow-hidden">
+<div class="h-full bg-primary" style="width: 98%"></div>
+</div>
+</div>
+<div class="space-y-3">
+<div class="flex items-center justify-between font-bold text-sm">
+<span class="flex items-center gap-2">
+<span class="material-symbols-outlined text-indigo-500">psychology</span>
+                                        Assertiveness
+                                    </span>
+<span class="text-slate-900">85%</span>
+</div>
+<div class="h-2 w-full bg-slate-100 rounded-full overflow-hidden">
+<div class="h-full bg-indigo-500" style="width: 85%"></div>
+</div>
+</div>
+<div class="space-y-3">
+<div class="flex items-center justify-between font-bold text-sm">
+<span class="flex items-center gap-2">
+<span class="material-symbols-outlined text-green-600">verified_user</span>
+                                        Security Compliance
+                                    </span>
+<span class="text-slate-900">100%</span>
+</div>
+<div class="h-2 w-full bg-slate-100 rounded-full overflow-hidden">
+<div class="h-full bg-green-600" style="width: 100%"></div>
+</div>
+</div>
+<div class="space-y-3">
+<div class="flex items-center justify-between font-bold text-sm">
+<span class="flex items-center gap-2">
+<span class="material-symbols-outlined text-accent-yellow text-amber-500">school</span>
+                                        Continuous Learning
+                                    </span>
+<span class="text-slate-900">76%</span>
+</div>
+<div class="h-2 w-full bg-slate-100 rounded-full overflow-hidden">
+<div class="h-full bg-accent-yellow" style="width: 76%"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Live Efficiency Stream -->
+<div class="glass-panel rounded-2xl border border-slate-200 flex flex-col">
+<div class="p-6 border-b border-slate-100">
+<h3 class="text-lg font-bold text-slate-900">Live Agent Stream</h3>
+<div class="mt-2 flex gap-4">
+<span class="flex items-center gap-1.5 text-xs font-bold text-slate-500">
+<span class="status-dot bg-primary"></span> On-track
+                                </span>
+<span class="flex items-center gap-1.5 text-xs font-bold text-slate-500">
+<span class="status-dot bg-accent-yellow"></span> Delayed
+                                </span>
+<span class="flex items-center gap-1.5 text-xs font-bold text-slate-500">
+<span class="status-dot bg-indigo-500"></span> Ahead
+                                </span>
+</div>
+</div>
+<div class="flex-1 overflow-y-auto">
+<table class="w-full text-left">
+<thead class="text-[10px] font-black text-slate-400 uppercase tracking-widest bg-slate-50/50 sticky top-0">
+<tr>
+<th class="px-6 py-3">Agent ID</th>
+<th class="px-6 py-3">Current Task</th>
+<th class="px-6 py-3">Efficiency</th>
+<th class="px-6 py-3 text-right">Status</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-100 text-sm">
+<tr class="hover:bg-slate-50/50 transition-colors group">
+<td class="px-6 py-4 font-mono font-bold text-primary">AGENT_772</td>
+<td class="px-6 py-4 font-medium text-slate-600 truncate max-w-[150px]">Refactor Auth Middleware</td>
+<td class="px-6 py-4 font-bold">94.8%</td>
+<td class="px-6 py-4 text-right">
+<span class="px-2 py-1 rounded bg-primary/10 text-primary text-[10px] font-black">ON-TRACK</span>
+</td>
+</tr>
+<tr class="hover:bg-slate-50/50 transition-colors group">
+<td class="px-6 py-4 font-mono font-bold text-primary">AGENT_104</td>
+<td class="px-6 py-4 font-medium text-slate-600 truncate max-w-[150px]">Dependency Resolution</td>
+<td class="px-6 py-4 font-bold">62.1%</td>
+<td class="px-6 py-4 text-right">
+<span class="px-2 py-1 rounded bg-accent-yellow/10 text-amber-600 text-[10px] font-black">DELAYED</span>
+</td>
+</tr>
+<tr class="hover:bg-slate-50/50 transition-colors group">
+<td class="px-6 py-4 font-mono font-bold text-primary">AGENT_912</td>
+<td class="px-6 py-4 font-medium text-slate-600 truncate max-w-[150px]">Edge Case Documentation</td>
+<td class="px-6 py-4 font-bold">114.2%</td>
+<td class="px-6 py-4 text-right">
+<span class="px-2 py-1 rounded bg-indigo-500/10 text-indigo-500 text-[10px] font-black">AHEAD</span>
+</td>
+</tr>
+<tr class="hover:bg-slate-50/50 transition-colors group">
+<td class="px-6 py-4 font-mono font-bold text-primary">AGENT_431</td>
+<td class="px-6 py-4 font-medium text-slate-600 truncate max-w-[150px]">Unit Test Synthesis</td>
+<td class="px-6 py-4 font-bold">91.0%</td>
+<td class="px-6 py-4 text-right">
+<span class="px-2 py-1 rounded bg-primary/10 text-primary text-[10px] font-black">ON-TRACK</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<!-- System Efficiency Graph Placeholder -->
+<div class="glass-panel p-8 rounded-2xl border border-slate-200">
+<div class="flex items-center justify-between mb-8">
+<h3 class="text-xl font-bold text-slate-900">Global Efficiency Trends</h3>
+<div class="flex gap-2">
+<span class="size-3 bg-primary rounded-full"></span>
+<span class="size-3 bg-slate-300 rounded-full"></span>
+<span class="size-3 bg-slate-200 rounded-full"></span>
+</div>
+</div>
+<div class="w-full h-48 flex items-end justify-between gap-2 px-2">
+<!-- Simplified bar chart representation -->
+<div class="w-full bg-primary/20 hover:bg-primary transition-colors h-[40%] rounded-t-lg relative group cursor-pointer" title="08:00 AM">
+<span class="absolute -top-8 left-1/2 -translate-x-1/2 bg-slate-800 text-white text-[10px] py-1 px-2 rounded opacity-0 group-hover:opacity-100 transition-opacity">82%</span>
+</div>
+<div class="w-full bg-primary/20 hover:bg-primary transition-colors h-[55%] rounded-t-lg relative group cursor-pointer" title="09:00 AM"></div>
+<div class="w-full bg-primary/20 hover:bg-primary transition-colors h-[75%] rounded-t-lg relative group cursor-pointer" title="10:00 AM"></div>
+<div class="w-full bg-primary/20 hover:bg-primary transition-colors h-[60%] rounded-t-lg relative group cursor-pointer" title="11:00 AM"></div>
+<div class="w-full bg-primary/20 hover:bg-primary transition-colors h-[90%] rounded-t-lg relative group cursor-pointer" title="12:00 PM"></div>
+<div class="w-full bg-primary/20 hover:bg-primary transition-colors h-[82%] rounded-t-lg relative group cursor-pointer" title="01:00 PM"></div>
+<div class="w-full bg-primary/20 hover:bg-primary transition-colors h-[70%] rounded-t-lg relative group cursor-pointer" title="02:00 PM"></div>
+<div class="w-full bg-primary/20 hover:bg-primary transition-colors h-[88%] rounded-t-lg relative group cursor-pointer" title="03:00 PM"></div>
+<div class="w-full bg-primary/20 hover:bg-primary transition-colors h-[95%] rounded-t-lg relative group cursor-pointer" title="04:00 PM"></div>
+<div class="w-full bg-primary/20 hover:bg-primary transition-colors h-[85%] rounded-t-lg relative group cursor-pointer" title="05:00 PM"></div>
+<div class="w-full bg-primary/20 hover:bg-primary transition-colors h-[65%] rounded-t-lg relative group cursor-pointer" title="06:00 PM"></div>
+<div class="w-full bg-primary/20 hover:bg-primary transition-colors h-[45%] rounded-t-lg relative group cursor-pointer" title="07:00 PM"></div>
+</div>
+<div class="flex justify-between mt-4 text-[10px] font-bold text-slate-400 uppercase tracking-widest px-2">
+<span>08:00 AM</span>
+<span>12:00 PM</span>
+<span>04:00 PM</span>
+<span>08:00 PM</span>
+</div>
+</div>
+</div>
+<footer class="p-8 mt-auto text-center border-t border-slate-200/50">
+<p class="text-xs text-slate-400 font-medium">© 2024 AI-Dev Commander. FACEBRASIL Design Language v2.4. Premium Enterprise Edition.</p>
+</footer>
+</main>
+</div>
+</body></html>

@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Project Detail Commander View - AI-Dev Commander</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#305ee8",
+                        "accent-yellow": "#FDE047",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#111521",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        .glass {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        .dark .glass {
+            background: rgba(17, 21, 33, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.2s ease;
+        }
+        .glass-card:hover {
+            background: rgba(255, 255, 255, 0.6);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        }
+        body {
+            background: radial-gradient(circle at top left, #eef2ff, #f6f6f8);
+        }
+    </style>
+</head>
+<body class="font-display text-slate-900 bg-background-light dark:bg-background-dark min-h-screen">
+<!-- Top Navigation Bar -->
+<header class="sticky top-0 z-50 glass border-b border-slate-200/50 px-6 py-3 flex items-center justify-between">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center text-white">
+<span class="material-symbols-outlined text-xl">terminal</span>
+</div>
+<h1 class="text-lg font-bold tracking-tight text-slate-900">AI-Dev Commander</h1>
+</div>
+<div class="relative w-96">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-sm">search</span>
+<input class="w-full bg-slate-100/50 border-none rounded-lg pl-10 text-sm focus:ring-2 focus:ring-primary/20" placeholder="Search commands, tasks, or files..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<nav class="hidden md:flex items-center gap-6 text-sm font-medium text-slate-600">
+<a class="hover:text-primary transition-colors" href="#">Dashboard</a>
+<a class="text-primary font-bold border-b-2 border-primary pb-1" href="#">Projects</a>
+<a class="hover:text-primary transition-colors" href="#">Deployments</a>
+<a class="hover:text-primary transition-colors" href="#">Settings</a>
+</nav>
+<div class="flex items-center gap-3 border-l border-slate-200 pl-6">
+<button class="relative p-2 text-slate-500 hover:bg-slate-100 rounded-full">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full border-2 border-white"></span>
+</button>
+<div class="w-8 h-8 rounded-full bg-slate-200 overflow-hidden border border-slate-300">
+<img class="w-full h-full object-cover" data-alt="User profile avatar of a developer" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAuZK1A3WhXNqAygPT7jjnoSUtDjLHntp4rT1Rr4-k-urABnmiJB4actaHCHVBat2jykCL3nQ-99hdYK3Ags0U9cjKeVuV5wouEzG-ed-MDJHwJ2dtWS0edU7M98_BxC9aHf7zyBZrwl7LvfdmD7Hv5E0dA-W8D_gLUHvT2NPybgvhyBaeJl84S9yGlgqtxCPP1gRymfoH7MV9-Ua-NanYZUXpVO2XVYr6v1Xspq8kRb6Akgv2SDH2hjcIVpGeGb_DKTuYli6YUWCat"/>
+</div>
+</div>
+</div>
+</header>
+<main class="flex h-[calc(100vh-64px)] overflow-hidden">
+<!-- Sidebar: Project Metadata -->
+<aside class="w-80 glass border-r border-slate-200/50 flex flex-col p-6 overflow-y-auto">
+<div class="mb-8">
+<div class="flex items-center gap-2 text-xs font-bold text-primary uppercase tracking-widest mb-2">
+<span class="material-symbols-outlined text-xs">folder_open</span>
+                    Project Alpha-7
+                </div>
+<h2 class="text-2xl font-bold text-slate-900 mb-1 leading-tight">Engine Core Architecture</h2>
+<p class="text-sm text-slate-500">v2.4.0-stable | Production</p>
+</div>
+<div class="space-y-6">
+<!-- Health Score Gauge -->
+<div class="glass-card rounded-xl p-4 border border-slate-200/50">
+<div class="flex justify-between items-center mb-3">
+<span class="text-sm font-semibold text-slate-700">Project Health</span>
+<span class="text-xs font-bold text-green-600 bg-green-50 px-2 py-0.5 rounded-full">Optimal</span>
+</div>
+<div class="relative pt-1">
+<div class="flex mb-2 items-center justify-between">
+<div class="text-3xl font-bold text-slate-900">94%</div>
+<div class="text-xs text-green-600 flex items-center font-bold">
+<span class="material-symbols-outlined text-xs">trending_up</span> +2.4%
+                            </div>
+</div>
+<div class="overflow-hidden h-2 text-xs flex rounded bg-slate-100">
+<div class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-primary" style="width:94%"></div>
+</div>
+</div>
+</div>
+<!-- Tech Stack -->
+<div>
+<h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3">Tech Stack</h3>
+<div class="flex flex-wrap gap-2">
+<span class="px-2 py-1 bg-slate-100 text-slate-600 rounded text-[10px] font-bold">TYPESCRIPT</span>
+<span class="px-2 py-1 bg-slate-100 text-slate-600 rounded text-[10px] font-bold">RUST</span>
+<span class="px-2 py-1 bg-slate-100 text-slate-600 rounded text-[10px] font-bold">POSTGRES</span>
+<span class="px-2 py-1 bg-slate-100 text-slate-600 rounded text-[10px] font-bold">KUBERNETES</span>
+</div>
+</div>
+<!-- Repo Info -->
+<div class="space-y-3">
+<h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3">Repository Status</h3>
+<div class="flex items-center justify-between text-sm">
+<span class="text-slate-500 flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">account_tree</span> Branch
+                        </span>
+<span class="font-mono text-primary font-bold">main</span>
+</div>
+<div class="flex items-center justify-between text-sm">
+<span class="text-slate-500 flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">commit</span> Last Commit
+                        </span>
+<span class="font-mono text-slate-700">#a2f91c</span>
+</div>
+</div>
+<!-- Team Members Section -->
+<div class="pt-4">
+<h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3">Engineering Team</h3>
+<div class="space-y-3">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="relative">
+<img class="w-8 h-8 rounded-full border border-slate-200" data-alt="Developer profile picture" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB2NgydNh9S9MPZKHKHDW8WuEDeHe10miG5itB07xAIRRN3jnSUqv6U8TX4H0lHtU6zOx2oFodhFLOmIg3g_khtQvplP_EfNxE2vrt5FqSsoI6lslHUpFjNw0RFg-vCHTk7sUWkA8Wyectyc9r1z49nEJT3NBRLLiclQ6_tGAV6tAirsamvwtBPQ7cN190Cp5xb35cKxpnlzoDeZ3m9cPSik429s1RMDjFgWd0DJq5eW3_1nCyt9dm49633aBSBXWPCSCoTjNat3O_C"/>
+<div class="absolute bottom-0 right-0 w-2.5 h-2.5 bg-green-500 border-2 border-white rounded-full"></div>
+</div>
+<div>
+<p class="text-xs font-bold text-slate-800">Marco Rossi</p>
+<p class="text-[10px] text-slate-500">Lead Architect</p>
+</div>
+</div>
+<div class="text-[10px] font-bold text-slate-400">12% Load</div>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="relative">
+<img class="w-8 h-8 rounded-full border border-slate-200" data-alt="Developer profile picture" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC9SGDSw09eFpvXZ4UlkHc9u2B-kjF0WRgggdYY9WISA0O4ySydH_PNzT88d8quMB9FRiHE3MBOboFCvOdtXk7vE1iYFFZkr9tcClnP0SLDulPFclmOFFTYnzUNtpugjJfS3LXUQirl-9jKP9azhZtE1HfoxHiaZcqZs3_4FOFeMYcP_uCg36CTlO8U0Z4ynAJ1t7XXnD3nhd7cAAZxswVJMye2Welm6JU-i-mbkQ5dKqjabhcRHGUzHzLCzSZh07gjkH7KfZ1psPdI"/>
+<div class="absolute bottom-0 right-0 w-2.5 h-2.5 bg-green-500 border-2 border-white rounded-full"></div>
+</div>
+<div>
+<p class="text-xs font-bold text-slate-800">Elena Vance</p>
+<p class="text-[10px] text-slate-500">Security Eng</p>
+</div>
+</div>
+<div class="text-[10px] font-bold text-slate-400">85% Load</div>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-auto pt-6">
+<button class="w-full bg-primary text-white font-bold py-3 rounded-lg flex items-center justify-center gap-2 shadow-lg shadow-primary/20 hover:bg-primary/90 transition-all">
+<span class="material-symbols-outlined">rocket_launch</span>
+                    Deploy to Prod
+                </button>
+</div>
+</aside>
+<!-- Main Content Area: Kanban / Activity -->
+<section class="flex-1 flex flex-col overflow-hidden bg-white/30">
+<!-- Breadcrumbs & Local Nav -->
+<div class="px-8 py-4 flex items-center justify-between border-b border-slate-200/50 glass">
+<div class="flex items-center gap-2 text-sm">
+<a class="text-slate-400 hover:text-primary" href="#">Projects</a>
+<span class="text-slate-300">/</span>
+<span class="font-semibold text-slate-900">Project Alpha-7 Engine</span>
+</div>
+<div class="flex gap-2">
+<button class="px-4 py-2 bg-white border border-slate-200 text-slate-700 text-xs font-bold rounded-lg hover:bg-slate-50 flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">filter_list</span> Filter
+                    </button>
+<button class="px-4 py-2 bg-slate-900 text-white text-xs font-bold rounded-lg hover:bg-slate-800 flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">add</span> New Task
+                    </button>
+</div>
+</div>
+<!-- Kanban Board -->
+<div class="flex-1 overflow-x-auto p-8 flex gap-6 items-start scroll-smooth">
+<!-- Column: Backlog -->
+<div class="min-w-[320px] flex flex-col gap-4">
+<div class="flex items-center justify-between px-2">
+<h3 class="text-sm font-bold text-slate-600 flex items-center gap-2 uppercase tracking-widest">
+<span class="w-2 h-2 rounded-full bg-slate-400"></span>
+                            Backlog <span class="text-slate-400 font-normal ml-1">4</span>
+</h3>
+</div>
+<div class="glass-card p-4 rounded-xl">
+<div class="flex justify-between items-start mb-3">
+<span class="text-[10px] font-bold bg-slate-100 text-slate-600 px-2 py-1 rounded">CORE-291</span>
+<span class="material-symbols-outlined text-slate-400 text-sm">more_horiz</span>
+</div>
+<h4 class="text-sm font-bold text-slate-900 mb-2">Implement JWT validation layer for Auth service</h4>
+<div class="flex items-center justify-between mt-4">
+<div class="flex -space-x-2">
+<img class="w-6 h-6 rounded-full border-2 border-white" data-alt="Assignee avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAl763543KGStygQKKfAXxEXpnkl8SNvgFvvhz7yIV81R168IcqnePfGFjDwxaL0XEW_KQAK4DgucUYB6dtZSHmznme7t3U_4ZMNf83NWwSWgywxvCAjtIL9QThoVLSfd2mKu13-0APKLPh1y87swlcBAzvpzEFWvtFDJQpn5mYmBt_mTSmmD_DqHSxaglFiQkzWsXRR5dcJ9nSjV0WObAO48nuiuUMkBzFqXCRct4w0SPfKyFJldlsMCNMl2TD7dAHtwQpbAQ4ywPg"/>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-slate-400 text-sm">chat_bubble</span>
+<span class="text-[10px] font-bold text-slate-400">2</span>
+</div>
+</div>
+</div>
+<div class="glass-card p-4 rounded-xl">
+<div class="flex justify-between items-start mb-3">
+<span class="text-[10px] font-bold bg-slate-100 text-slate-600 px-2 py-1 rounded">INFRA-04</span>
+<span class="material-symbols-outlined text-slate-400 text-sm">more_horiz</span>
+</div>
+<h4 class="text-sm font-bold text-slate-900 mb-2">Configure S3 bucket lifecycle policies</h4>
+<div class="flex items-center justify-between mt-4">
+<div class="flex -space-x-2">
+<div class="w-6 h-6 rounded-full bg-slate-200 border-2 border-white flex items-center justify-center">
+<span class="material-symbols-outlined text-[12px] text-slate-500">person</span>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-slate-400 text-sm">attachment</span>
+<span class="text-[10px] font-bold text-slate-400">5</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Column: In Progress -->
+<div class="min-w-[320px] flex flex-col gap-4">
+<div class="flex items-center justify-between px-2">
+<h3 class="text-sm font-bold text-slate-900 flex items-center gap-2 uppercase tracking-widest">
+<span class="w-2 h-2 rounded-full bg-primary"></span>
+                            In Progress <span class="text-slate-400 font-normal ml-1">2</span>
+</h3>
+</div>
+<div class="glass-card p-4 rounded-xl border-l-4 border-l-primary shadow-sm bg-white/60">
+<div class="flex justify-between items-start mb-3">
+<span class="text-[10px] font-bold bg-primary/10 text-primary px-2 py-1 rounded">API-102</span>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-accent-yellow text-base">bolt</span>
+<span class="text-[10px] font-bold text-accent-yellow uppercase">AI Priority</span>
+</div>
+</div>
+<h4 class="text-sm font-bold text-slate-900 mb-2">Refactor GraphQL resolvers for performance optimization</h4>
+<div class="w-full bg-slate-100 h-1.5 rounded-full my-4 overflow-hidden">
+<div class="bg-primary h-full rounded-full" style="width: 65%"></div>
+</div>
+<div class="flex items-center justify-between mt-4">
+<img class="w-6 h-6 rounded-full border-2 border-white" data-alt="Assignee avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuArnD_qcddfEqlcmybfoC5rmXC4jcQm9u0r-eT83vyu4sqjJYiA-bbVmpsRSt5WAGzyrt8hrlQDHBaKNFhgDEYSNeQcsrLy2uHxUWXOi7zSkQXogOtFMwgGlmlVcODkboxnd4wRAPbtEe5907PnAoQLpel2zZ0p8m_QcYHzUrqfZ_N8EEUQ0G20SfzIJ_AifVIz--86EzVOCFTTf-FLz2z5BkYD7fnIq7o1fq73oSu117tY50OU4TYvTG7yAuUJowMBpzizuZkjcZH_"/>
+<div class="text-[10px] font-bold text-slate-400">Updated 5m ago</div>
+</div>
+</div>
+</div>
+<!-- Column: Review -->
+<div class="min-w-[320px] flex flex-col gap-4">
+<div class="flex items-center justify-between px-2">
+<h3 class="text-sm font-bold text-slate-600 flex items-center gap-2 uppercase tracking-widest">
+<span class="w-2 h-2 rounded-full bg-accent-yellow"></span>
+                            Review <span class="text-slate-400 font-normal ml-1">1</span>
+</h3>
+</div>
+<div class="glass-card p-4 rounded-xl">
+<div class="flex justify-between items-start mb-3">
+<span class="text-[10px] font-bold bg-slate-100 text-slate-600 px-2 py-1 rounded">SEC-88</span>
+<span class="material-symbols-outlined text-red-500 text-sm">priority_high</span>
+</div>
+<h4 class="text-sm font-bold text-slate-900 mb-2">Vulnerability fix: sanitize input on contact form</h4>
+<div class="flex items-center justify-between mt-4">
+<div class="flex items-center gap-2">
+<img class="w-6 h-6 rounded-full border-2 border-white" data-alt="Assignee avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDyoj1d4YP_W78pJ2ssWGGjVpVuEyLoVbYcXJDyb1Wo2L0yq67OU8S96EpLxJO7E2XggzMzZHN8YkN4gtWmZlOdQ0schr4yqXdPC14W_iiCTDmlWwDkiehbzsjNcmZi-3dG3t09LscGrwmEmGrNNBBmeT-7N7B2d1R-AK5KDj20FY0hfI-opZXhUdHVxQqKaSOkRmNJDgfjEMSj_2RHrTGfDcZL4UD1g5X4WLXfyID3v2zRQeWPzJ5RRSyOHJDo4moAngt0s-kKv7zk"/>
+<span class="text-[10px] font-bold text-slate-400">+2 Reviewers</span>
+</div>
+<span class="text-[10px] font-bold text-red-500 bg-red-50 px-2 py-0.5 rounded">High Risk</span>
+</div>
+</div>
+</div>
+<!-- Column: Done -->
+<div class="min-w-[320px] flex flex-col gap-4">
+<div class="flex items-center justify-between px-2">
+<h3 class="text-sm font-bold text-slate-600 flex items-center gap-2 uppercase tracking-widest">
+<span class="w-2 h-2 rounded-full bg-green-500"></span>
+                            Done <span class="text-slate-400 font-normal ml-1">12</span>
+</h3>
+</div>
+<div class="glass-card p-4 rounded-xl opacity-60 grayscale hover:grayscale-0 hover:opacity-100">
+<h4 class="text-sm font-bold text-slate-900 mb-2">Setup CI/CD pipeline for staging environment</h4>
+<div class="flex items-center justify-between mt-4">
+<span class="material-symbols-outlined text-green-500">check_circle</span>
+<span class="text-[10px] font-bold text-slate-400">Deployed 2h ago</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Recent Activities & AI Insights Footer -->
+<div class="h-64 glass border-t border-slate-200/50 flex p-6 gap-8 overflow-hidden">
+<div class="flex-1 overflow-y-auto pr-4">
+<h3 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-4">Activity Stream</h3>
+<div class="space-y-4">
+<div class="flex gap-4">
+<div class="flex flex-col items-center">
+<div class="w-6 h-6 rounded-full bg-blue-100 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-sm">commit</span>
+</div>
+<div class="w-px h-full bg-slate-200 mt-2"></div>
+</div>
+<div>
+<p class="text-xs text-slate-700"><strong>Elena Vance</strong> pushed 4 commits to <code>feat/auth-v2</code></p>
+<p class="text-[10px] text-slate-400">14 minutes ago</p>
+</div>
+</div>
+<div class="flex gap-4">
+<div class="flex flex-col items-center">
+<div class="w-6 h-6 rounded-full bg-green-100 flex items-center justify-center text-green-600">
+<span class="material-symbols-outlined text-sm">rocket</span>
+</div>
+<div class="w-px h-full bg-slate-200 mt-2"></div>
+</div>
+<div>
+<p class="text-xs text-slate-700"><strong>Production Deployment</strong> successful for <code>v2.4.0</code></p>
+<p class="text-[10px] text-slate-400">2 hours ago</p>
+</div>
+</div>
+</div>
+</div>
+<!-- AI Insights Panel -->
+<div class="w-96 glass-card rounded-xl p-4 border-l-4 border-l-accent-yellow flex flex-col">
+<div class="flex items-center gap-2 mb-3">
+<span class="material-symbols-outlined text-accent-yellow">auto_awesome</span>
+<h3 class="text-xs font-bold text-slate-800 uppercase tracking-widest">AI Commander Insights</h3>
+</div>
+<div class="flex-1 text-sm text-slate-600 italic leading-relaxed">
+                        "I've detected a potential race condition in <code>db_connector.rs</code>. Recommend adding a mutex wrap to the pool initialization. Cycle time is trending down by 14% this week."
+                    </div>
+<button class="mt-4 text-[10px] font-bold text-primary flex items-center gap-1 hover:underline">
+                        Apply suggested fixes <span class="material-symbols-outlined text-xs">arrow_forward</span>
+</button>
+</div>
+</div>
+</section>
+</main>
+<!-- Floating AI Sync Action -->
+<button class="fixed bottom-8 right-8 w-14 h-14 bg-primary text-white rounded-full flex items-center justify-center shadow-2xl hover:scale-110 transition-transform z-[100]">
+<span class="material-symbols-outlined text-2xl">sync_alt</span>
+</button>
+</body></html>

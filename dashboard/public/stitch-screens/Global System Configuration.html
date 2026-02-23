@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Global System Configuration - AI-Dev_Commander</title>
+<!-- Tailwind CSS with Plugins -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Google Fonts: Inter -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#305ee8",
+              "accent-yellow": "#facc15",
+              "background-light": "#f6f6f8",
+              "background-dark": "#0a0d17",
+              "glass-white": "rgba(255, 255, 255, 0.7)",
+              "glass-dark": "rgba(17, 21, 33, 0.8)",
+            },
+            fontFamily: {
+              "display": ["Inter", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .glass-panel {
+            backdrop-filter: blur(16px) saturate(180%);
+            -webkit-backdrop-filter: blur(16px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.125);
+        }
+        .dark .glass-panel {
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        body {
+            background: radial-gradient(circle at top left, #f8f9fc, #e0e7ff);
+        }
+        .dark body {
+            background: radial-gradient(circle at top left, #111521, #0a0d17);
+        }
+    </style>
+</head>
+<body class="font-display text-[#0e111b] dark:text-white min-h-screen">
+<div class="relative flex h-auto min-h-screen w-full flex-col bg-transparent overflow-x-hidden">
+<!-- Top Navigation Bar -->
+<header class="sticky top-0 z-50 glass-panel bg-white/60 dark:bg-background-dark/60 border-b border-white/20 px-6 py-3">
+<div class="max-w-[1440px] mx-auto flex items-center justify-between">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-3">
+<div class="p-2 bg-primary rounded-lg text-white">
+<span class="material-symbols-outlined text-2xl">terminal</span>
+</div>
+<h2 class="text-xl font-extrabold tracking-tight">AI-Dev_Commander</h2>
+</div>
+<div class="hidden md:flex items-center gap-6 text-sm font-medium">
+<a class="hover:text-primary transition-colors" href="#">Dashboard</a>
+<a class="hover:text-primary transition-colors" href="#">Projects</a>
+<a class="hover:text-primary transition-colors" href="#">Infrastructure</a>
+<a class="hover:text-primary transition-colors" href="#">Analytics</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative group hidden lg:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">search</span>
+<input class="pl-10 pr-4 py-2 bg-white/40 dark:bg-white/5 border border-white/20 rounded-full text-sm focus:ring-2 focus:ring-primary outline-none w-64 transition-all" placeholder="Search configs..." type="text"/>
+</div>
+<button class="bg-primary hover:bg-primary/90 text-white px-5 py-2 rounded-full text-sm font-bold shadow-lg shadow-primary/20 transition-all flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">save</span> Save Changes
+                </button>
+<div class="size-10 rounded-full border-2 border-primary/20 overflow-hidden bg-white">
+<img alt="User Profile" class="w-full h-full object-cover" data-alt="User profile avatar circle" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBGmOlFHCJVXwhk_6QUh1dT-IwXMc8tOATuVGME6eRIXMVA_R1rL4RAri-V6ktq1mUIZSDQbs6l56Ad7B-T9l588FcS4hPWd4vdlm16kcqruvDrtQHsIgiyeTouw7veWqWRQC1k4H5Ci3FdK47rKRtaRVyFvKS09jjpBslymz2Tp2FmmUguowciLc4Q3NEcsHEHPr2w_1SiDQ6fg7XnSfMczxS3-YzuX4pBpJqVC-DnrqBry_rQiYWh0Urpv2gP7RpgVsW5Vb3RPtIN"/>
+</div>
+</div>
+</div>
+</header>
+<main class="max-w-[1200px] mx-auto w-full px-6 py-10">
+<!-- Breadcrumbs & Title -->
+<div class="mb-10">
+<nav class="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400 mb-4">
+<a class="hover:text-primary" href="#">Settings</a>
+<span class="material-symbols-outlined text-xs">chevron_right</span>
+<span class="text-primary font-semibold">Global System Configuration</span>
+</nav>
+<h1 class="text-4xl font-black mb-2">Global System Configuration</h1>
+<p class="text-gray-500 dark:text-gray-400 max-w-2xl">Orchestrate your development ecosystem. Manage theme aesthetics, external provider hooks, and system-wide security notifications.</p>
+</div>
+<div class="grid grid-cols-12 gap-8">
+<!-- Left Column: Theme & Notifications -->
+<div class="col-span-12 lg:col-span-8 flex flex-col gap-8">
+<!-- Theme Selection Panel -->
+<section class="glass-panel bg-white/40 dark:bg-white/5 p-6 rounded-xl">
+<div class="flex items-center gap-3 mb-6">
+<span class="material-symbols-outlined text-primary">palette</span>
+<h2 class="text-xl font-bold">Theme Selection</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div class="relative group cursor-pointer ring-2 ring-primary bg-white/80 dark:bg-background-dark/80 p-4 rounded-xl transition-all">
+<div class="aspect-video rounded-lg mb-4 overflow-hidden border border-primary/20 bg-gradient-to-br from-white to-blue-50 relative">
+<div class="absolute inset-0 flex items-center justify-center opacity-40">
+<span class="material-symbols-outlined text-6xl text-primary">light_mode</span>
+</div>
+<div class="absolute bottom-2 left-2 right-2 h-4 bg-primary/10 rounded"></div>
+</div>
+<div class="flex justify-between items-center">
+<div>
+<p class="font-bold">Light Architecture</p>
+<p class="text-xs text-gray-500">Soft blue glassmorphism</p>
+</div>
+<span class="material-symbols-outlined text-primary">check_circle</span>
+</div>
+</div>
+<div class="relative group cursor-pointer hover:bg-white/60 dark:hover:bg-white/10 p-4 rounded-xl border border-white/10 transition-all">
+<div class="aspect-video rounded-lg mb-4 overflow-hidden bg-background-dark border border-white/10 relative">
+<div class="absolute inset-0 flex items-center justify-center opacity-40">
+<span class="material-symbols-outlined text-6xl text-primary/40">dark_mode</span>
+</div>
+<div class="absolute bottom-2 left-2 right-2 h-4 bg-white/5 rounded"></div>
+</div>
+<div>
+<p class="font-bold text-gray-400 group-hover:text-gray-100 transition-colors">Deep Void</p>
+<p class="text-xs text-gray-500">Sophisticated dark interface</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Notification Toggles -->
+<section class="glass-panel bg-white/40 dark:bg-white/5 p-6 rounded-xl">
+<div class="flex items-center gap-3 mb-6">
+<span class="material-symbols-outlined text-primary">notifications_active</span>
+<h2 class="text-xl font-bold">Notification Preferences</h2>
+</div>
+<div class="space-y-4">
+<div class="flex items-center justify-between p-4 bg-white/30 dark:bg-white/5 rounded-lg border border-white/10">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-gray-400">rocket_launch</span>
+<div>
+<p class="font-semibold text-sm">Deployment Success Alerts</p>
+<p class="text-xs text-gray-500">Notify when production builds are verified</p>
+</div>
+</div>
+<div class="w-12 h-6 bg-primary rounded-full relative p-1 cursor-pointer">
+<div class="size-4 bg-white rounded-full ml-auto"></div>
+</div>
+</div>
+<div class="flex items-center justify-between p-4 bg-white/30 dark:bg-white/5 rounded-lg border border-white/10">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-gray-400">security</span>
+<div>
+<p class="font-semibold text-sm">Vulnerability Reports</p>
+<p class="text-xs text-gray-500">Critical security scanning alerts</p>
+</div>
+</div>
+<div class="w-12 h-6 bg-primary rounded-full relative p-1 cursor-pointer">
+<div class="size-4 bg-white rounded-full ml-auto"></div>
+</div>
+</div>
+<div class="flex items-center justify-between p-4 bg-white/30 dark:bg-white/5 rounded-lg border border-white/10">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-gray-400">health_and_safety</span>
+<div>
+<p class="font-semibold text-sm">System Health Monitor</p>
+<p class="text-xs text-gray-500">Infrastructure uptime and node health</p>
+</div>
+</div>
+<div class="w-12 h-6 bg-gray-300 dark:bg-gray-700 rounded-full relative p-1 cursor-pointer">
+<div class="size-4 bg-white rounded-full"></div>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- Right Column: Integrations & Export -->
+<div class="col-span-12 lg:col-span-4 flex flex-col gap-8">
+<!-- Integrations Panel -->
+<section class="glass-panel bg-white/40 dark:bg-white/5 p-6 rounded-xl h-full">
+<div class="flex items-center justify-between mb-6">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">hub</span>
+<h2 class="text-xl font-bold">Integrations</h2>
+</div>
+<button class="text-primary text-xs font-bold uppercase tracking-wider">Add New</button>
+</div>
+<div class="flex flex-col gap-3">
+<!-- GitHub -->
+<div class="p-4 rounded-lg bg-white/60 dark:bg-white/5 border border-white/20 flex flex-col gap-3">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="size-8 rounded bg-black flex items-center justify-center text-white">
+<svg fill="currentColor" height="20" viewbox="0 0 24 24" width="20"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.041-1.412-4.041-1.412-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"></path></svg>
+</div>
+<p class="font-bold text-sm">GitHub</p>
+</div>
+<span class="text-[10px] bg-green-500/10 text-green-500 px-2 py-1 rounded-full border border-green-500/20 font-bold uppercase">Connected</span>
+</div>
+<button class="w-full py-2 bg-primary/10 hover:bg-primary/20 text-primary text-xs font-bold rounded transition-all">Configure Repos</button>
+</div>
+<!-- Jira -->
+<div class="p-4 rounded-lg bg-white/60 dark:bg-white/5 border border-white/20 flex flex-col gap-3">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="size-8 rounded bg-blue-600 flex items-center justify-center text-white">
+<span class="material-symbols-outlined text-sm">task_alt</span>
+</div>
+<p class="font-bold text-sm">Jira Software</p>
+</div>
+<span class="text-[10px] bg-green-500/10 text-green-500 px-2 py-1 rounded-full border border-green-500/20 font-bold uppercase">Connected</span>
+</div>
+<button class="w-full py-2 bg-primary/10 hover:bg-primary/20 text-primary text-xs font-bold rounded transition-all">Manage Boards</button>
+</div>
+<!-- Slack -->
+<div class="p-4 rounded-lg bg-white/60 dark:bg-white/5 border border-white/20 flex flex-col gap-3">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="size-8 rounded bg-purple-700 flex items-center justify-center text-white">
+<span class="material-symbols-outlined text-sm">chat_bubble</span>
+</div>
+<p class="font-bold text-sm">Slack</p>
+</div>
+<span class="text-[10px] bg-accent-yellow/10 text-accent-yellow px-2 py-1 rounded-full border border-accent-yellow/20 font-bold uppercase">Action Required</span>
+</div>
+<button class="w-full py-2 bg-accent-yellow text-black text-xs font-bold rounded transition-all">Reconnect Workspace</button>
+</div>
+</div>
+</section>
+<!-- Data Export Section -->
+<section class="glass-panel bg-white/40 dark:bg-white/5 p-6 rounded-xl">
+<div class="flex items-center gap-3 mb-4">
+<span class="material-symbols-outlined text-primary">data_usage</span>
+<h2 class="text-xl font-bold">Data &amp; Privacy</h2>
+</div>
+<p class="text-xs text-gray-500 mb-4">Export all configuration logs and user access history in machine-readable formats.</p>
+<div class="grid grid-cols-3 gap-2 mb-6">
+<button class="p-2 border border-white/20 rounded text-[10px] font-bold bg-white/40 hover:bg-white/60 dark:bg-white/5 dark:hover:bg-white/10 transition-colors">JSON</button>
+<button class="p-2 border border-white/20 rounded text-[10px] font-bold bg-white/40 hover:bg-white/60 dark:bg-white/5 dark:hover:bg-white/10 transition-colors">CSV</button>
+<button class="p-2 border border-white/20 rounded text-[10px] font-bold bg-white/40 hover:bg-white/60 dark:bg-white/5 dark:hover:bg-white/10 transition-colors">PDF</button>
+</div>
+<button class="w-full py-3 bg-white/80 dark:bg-white/10 text-primary dark:text-white border border-primary/30 rounded-lg text-sm font-bold flex items-center justify-center gap-2 hover:bg-primary hover:text-white transition-all">
+<span class="material-symbols-outlined text-sm">download</span> Trigger Data Export
+                    </button>
+</section>
+</div>
+</div>
+<!-- Danger Zone -->
+<div class="mt-12 border-t border-red-500/20 pt-8">
+<div class="flex items-start gap-6 glass-panel border-red-500/30 bg-red-500/5 p-8 rounded-xl">
+<div class="p-4 bg-red-500/20 text-red-500 rounded-full">
+<span class="material-symbols-outlined text-3xl">warning</span>
+</div>
+<div class="flex-1">
+<h3 class="text-lg font-bold text-red-500 mb-1">Critical Operations</h3>
+<p class="text-sm text-gray-500 dark:text-gray-400 mb-6 max-w-xl">Purging system logs or resetting the global configuration will affect all connected instances and cannot be undone. Handle with extreme caution.</p>
+<div class="flex gap-4">
+<button class="px-6 py-2 border border-red-500 text-red-500 rounded-full text-sm font-bold hover:bg-red-500 hover:text-white transition-all">Hard Reset Configuration</button>
+<button class="px-6 py-2 bg-red-500 text-white rounded-full text-sm font-bold hover:bg-red-600 shadow-lg shadow-red-500/20 transition-all">Purge All Logs</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer Stats -->
+<footer class="mt-20 border-t border-white/10 px-6 py-8">
+<div class="max-w-[1440px] mx-auto flex flex-col md:flex-row items-center justify-between gap-6 opacity-60">
+<div class="flex items-center gap-6 text-[10px] font-bold uppercase tracking-[2px]">
+<div class="flex items-center gap-2">
+<div class="size-2 rounded-full bg-green-500"></div> System Status: Operational
+                </div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-xs">update</span> Last Sync: 2m ago
+                </div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-xs">lock</span> SSL Encryption: Active
+                </div>
+</div>
+<p class="text-xs">© 2024 AI-Dev_Commander Enterprise. FaceBrasil Edition Variant v7.0.2</p>
+</div>
+</footer>
+</div>
+</body></html>

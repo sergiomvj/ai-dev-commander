@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Project Architecture Setup | AI-Dev_Commander</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#305ee8",
+                        "accent-yellow": "#fef08a",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#111521",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        .dark .glass-panel {
+            background: rgba(17, 21, 33, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .gradient-bg {
+            background: radial-gradient(circle at top right, #305ee822, transparent),
+                        radial-gradient(circle at bottom left, #fef08a11, transparent);
+        }
+    </style>
+</head>
+<body class="font-display bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen">
+<!-- Background Decoration -->
+<div class="fixed inset-0 z-0 overflow-hidden pointer-events-none">
+<div class="absolute -top-24 -right-24 w-96 h-96 bg-primary/10 rounded-full blur-3xl"></div>
+<div class="absolute bottom-12 left-12 w-64 h-64 bg-accent-yellow/10 rounded-full blur-3xl"></div>
+</div>
+<div class="relative z-10 flex flex-col min-h-screen">
+<!-- Top Navigation -->
+<header class="flex items-center justify-between px-8 py-4 border-b border-slate-200 dark:border-slate-800 bg-white/50 dark:bg-slate-900/50 backdrop-blur-md">
+<div class="flex items-center gap-4">
+<div class="bg-primary text-white p-2 rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined">terminal</span>
+</div>
+<h2 class="text-lg font-bold tracking-tight">AI-Dev_Commander</h2>
+</div>
+<div class="flex items-center gap-6">
+<nav class="hidden md:flex items-center gap-8 text-sm font-medium">
+<a class="text-primary border-b-2 border-primary pb-1" href="#">Architecture</a>
+<a class="text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors" href="#">Projects</a>
+<a class="text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors" href="#">Infrastructure</a>
+</nav>
+<div class="flex items-center gap-3">
+<button class="p-2 text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-full transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<div class="w-8 h-8 rounded-full bg-slate-200 dark:bg-slate-700 overflow-hidden border border-slate-300 dark:border-slate-600">
+<img alt="User" data-alt="User profile avatar portrait" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCIF7FcznKbltB1PKsKv_liDSCXfvH5iZP9fQxpGNhXaZx1dopXtNR14PJEjmmy4XVmE1F9nJG9IP4tvpf54ezeXIy0PyZThzF3ZhSENgnSTbeXHLaUJEnOzhh3wVfeRX8GnsCKamYGUlCIDb5W_8VOTsqRC58Fx4c7erMfigsNPEYVqXKXDTabMXx54eJXE2zYrCQuCbHRlqlij9gnTYISNBLEt6YGqchRMB6WblfJHOEq9ZK9GVBUUO8x-NA5A89Si3FAEkzAeEmG"/>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Workspace -->
+<main class="flex-1 flex items-center justify-center p-6 gradient-bg">
+<div class="glass-panel w-full max-w-4xl rounded-xl shadow-2xl flex flex-col overflow-hidden">
+<!-- Stepper Progress -->
+<div class="px-8 pt-8 pb-4 border-b border-slate-200/50 dark:border-slate-800/50">
+<div class="flex justify-between items-center mb-8">
+<div class="flex-1 flex flex-col items-center gap-2">
+<div class="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center font-bold">1</div>
+<span class="text-xs font-semibold text-primary">BASIC INFO</span>
+</div>
+<div class="h-[2px] flex-1 bg-primary/20 mx-4 mt-[-20px]">
+<div class="h-full bg-primary w-full"></div>
+</div>
+<div class="flex-1 flex flex-col items-center gap-2">
+<div class="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center font-bold">2</div>
+<span class="text-xs font-semibold text-primary">TEMPLATES</span>
+</div>
+<div class="h-[2px] flex-1 bg-slate-200 dark:bg-slate-800 mx-4 mt-[-20px]">
+<div class="h-full bg-primary w-1/2"></div>
+</div>
+<div class="flex-1 flex flex-col items-center gap-2 opacity-50">
+<div class="w-10 h-10 rounded-full bg-slate-200 dark:bg-slate-800 text-slate-500 flex items-center justify-center font-bold border-2 border-transparent">3</div>
+<span class="text-xs font-semibold uppercase">Members</span>
+</div>
+<div class="h-[2px] flex-1 bg-slate-200 dark:bg-slate-800 mx-4 mt-[-20px]"></div>
+<div class="flex-1 flex flex-col items-center gap-2 opacity-50">
+<div class="w-10 h-10 rounded-full bg-slate-200 dark:bg-slate-800 text-slate-500 flex items-center justify-center font-bold">4</div>
+<span class="text-xs font-semibold uppercase">Permissions</span>
+</div>
+</div>
+<div class="flex flex-col gap-1">
+<h1 class="text-2xl font-bold tracking-tight text-slate-900 dark:text-white">Project Setup</h1>
+<p class="text-sm text-slate-500 dark:text-slate-400">Step 2: Selection of engineering architecture template</p>
+</div>
+</div>
+<!-- Content Area (Template Selection View) -->
+<div class="flex-1 overflow-y-auto p-8 max-h-[500px]">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<!-- Template Card 1 (Active) -->
+<div class="relative group cursor-pointer border-2 border-primary bg-primary/5 rounded-xl p-6 transition-all shadow-lg ring-4 ring-primary/10">
+<div class="absolute top-3 right-3 text-primary">
+<span class="material-symbols-outlined fill-current">check_circle</span>
+</div>
+<div class="w-12 h-12 bg-primary/20 rounded-lg flex items-center justify-center text-primary mb-4">
+<span class="material-symbols-outlined">layers</span>
+</div>
+<h3 class="font-bold text-slate-900 dark:text-white mb-2">Microservices</h3>
+<p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">Distributed system architecture with Docker, K8s, and event-driven communication.</p>
+<div class="mt-4 pt-4 border-t border-slate-200 dark:border-slate-800 flex flex-wrap gap-2">
+<span class="px-2 py-0.5 bg-slate-100 dark:bg-slate-800 rounded text-[10px] font-bold text-slate-600 dark:text-slate-300">DOCKER</span>
+<span class="px-2 py-0.5 bg-slate-100 dark:bg-slate-800 rounded text-[10px] font-bold text-slate-600 dark:text-slate-300">GO/NODE</span>
+</div>
+</div>
+<!-- Template Card 2 -->
+<div class="relative group cursor-pointer border-2 border-slate-200/50 dark:border-slate-800 hover:border-primary/50 bg-white/40 dark:bg-slate-900/40 rounded-xl p-6 transition-all hover:shadow-md">
+<div class="w-12 h-12 bg-slate-100 dark:bg-slate-800 rounded-lg flex items-center justify-center text-slate-500 dark:text-slate-400 mb-4 group-hover:text-primary transition-colors">
+<span class="material-symbols-outlined">cloud</span>
+</div>
+<h3 class="font-bold text-slate-900 dark:text-white mb-2">Serverless API</h3>
+<p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">AWS Lambda/Azure Functions setup with API Gateway and NoSQL storage.</p>
+<div class="mt-4 pt-4 border-t border-slate-200 dark:border-slate-800 flex flex-wrap gap-2">
+<span class="px-2 py-0.5 bg-slate-100 dark:bg-slate-800 rounded text-[10px] font-bold text-slate-600 dark:text-slate-300">AWS</span>
+<span class="px-2 py-0.5 bg-slate-100 dark:bg-slate-800 rounded text-[10px] font-bold text-slate-600 dark:text-slate-300">PYTHON</span>
+</div>
+</div>
+<!-- Template Card 3 -->
+<div class="relative group cursor-pointer border-2 border-slate-200/50 dark:border-slate-800 hover:border-primary/50 bg-white/40 dark:bg-slate-900/40 rounded-xl p-6 transition-all hover:shadow-md">
+<div class="w-12 h-12 bg-slate-100 dark:bg-slate-800 rounded-lg flex items-center justify-center text-slate-500 dark:text-slate-400 mb-4 group-hover:text-primary transition-colors">
+<span class="material-symbols-outlined">view_quilt</span>
+</div>
+<h3 class="font-bold text-slate-900 dark:text-white mb-2">Clean Monolith</h3>
+<p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">Onion architecture for robust enterprise applications with SQL backend.</p>
+<div class="mt-4 pt-4 border-t border-slate-200 dark:border-slate-800 flex flex-wrap gap-2">
+<span class="px-2 py-0.5 bg-slate-100 dark:bg-slate-800 rounded text-[10px] font-bold text-slate-600 dark:text-slate-300">DOTNET</span>
+<span class="px-2 py-0.5 bg-slate-100 dark:bg-slate-800 rounded text-[10px] font-bold text-slate-600 dark:text-slate-300">POSTGRES</span>
+</div>
+</div>
+</div>
+<!-- Step Preview Information -->
+<div class="mt-8 bg-accent-yellow/5 border border-accent-yellow/20 rounded-lg p-4 flex items-start gap-4">
+<div class="p-2 bg-accent-yellow/20 rounded-full text-yellow-700 dark:text-accent-yellow flex items-center justify-center">
+<span class="material-symbols-outlined text-sm">lightbulb</span>
+</div>
+<div>
+<h4 class="text-sm font-bold text-yellow-900 dark:text-accent-yellow mb-1">Architecture Recommendation</h4>
+<p class="text-xs text-yellow-800/80 dark:text-accent-yellow/60 leading-relaxed">Based on your project description "High-frequency trade-engine", the Microservices architecture with Kafka-based messaging is recommended for optimal scaling and performance.</p>
+</div>
+</div>
+</div>
+<!-- Footer Actions -->
+<div class="p-6 border-t border-slate-200/50 dark:border-slate-800/50 flex justify-between items-center bg-white/30 dark:bg-slate-900/30">
+<button class="flex items-center gap-2 px-5 py-2.5 text-sm font-bold text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors">
+<span class="material-symbols-outlined">arrow_back</span>
+                        Back
+                    </button>
+<div class="flex gap-4">
+<button class="px-5 py-2.5 text-sm font-bold text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors">
+                            Save as Draft
+                        </button>
+<button class="bg-primary hover:bg-primary/90 text-white px-8 py-2.5 rounded-lg text-sm font-bold flex items-center gap-2 shadow-lg shadow-primary/20 transition-all active:scale-95">
+                            Continue to Members
+                            <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+<!-- Preview of next steps (Drawer style or side panel logic) -->
+<aside class="hidden xl:block fixed right-8 top-32 w-64">
+<div class="glass-panel rounded-xl p-5 border border-slate-200 dark:border-slate-800 space-y-6">
+<div>
+<h5 class="text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest mb-4">Upcoming Steps</h5>
+<div class="space-y-4">
+<div class="flex items-start gap-3 opacity-60">
+<div class="w-6 h-6 rounded bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-[10px] font-bold">3</div>
+<div>
+<p class="text-xs font-bold">Team Invitations</p>
+<p class="text-[10px] text-slate-500">Add engineers via email</p>
+</div>
+</div>
+<div class="flex items-start gap-3 opacity-40">
+<div class="w-6 h-6 rounded bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-[10px] font-bold">4</div>
+<div>
+<p class="text-xs font-bold">Role Assignment</p>
+<p class="text-[10px] text-slate-500">Define access controls</p>
+</div>
+</div>
+</div>
+</div>
+<div class="pt-4 border-t border-slate-200/50 dark:border-slate-800/50">
+<h5 class="text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest mb-3">Project Summary</h5>
+<div class="space-y-2">
+<div class="flex justify-between text-[11px]">
+<span class="text-slate-500">Name:</span>
+<span class="font-medium">Vortex Prime</span>
+</div>
+<div class="flex justify-between text-[11px]">
+<span class="text-slate-500">Region:</span>
+<span class="font-medium">us-east-1</span>
+</div>
+</div>
+</div>
+<div class="p-3 bg-primary/10 rounded-lg">
+<div class="flex items-center gap-2 text-primary mb-1">
+<span class="material-symbols-outlined text-sm">verified</span>
+<span class="text-[10px] font-bold uppercase tracking-tight">FACEBRASIL Standard</span>
+</div>
+<p class="text-[10px] text-slate-600 dark:text-slate-400">Compliant with premium architectural governance frameworks.</p>
+</div>
+</div>
+</aside>
+<!-- Footer Info -->
+<footer class="p-6 text-center text-xs text-slate-400 dark:text-slate-600">
+            © 2024 AI-Dev_Commander v1.0.8-alpha | Advanced Engineering Management
+        </footer>
+</div>
+</body></html>

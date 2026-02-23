@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Commander Profile Settings</title>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS with plugins -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#305ee8",
+                        "accent-yellow": "#facc15",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#111521",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-container {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        .dark .glass-container {
+            background: rgba(17, 21, 33, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .luxury-gradient {
+            background: radial-gradient(circle at top right, #1e293b, #111521);
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen">
+<div class="relative flex min-h-screen w-full flex-col overflow-x-hidden luxury-gradient">
+<!-- Top Navigation -->
+<header class="flex items-center justify-between border-b border-white/10 px-8 py-4 glass-container sticky top-0 z-50">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-3 text-primary">
+<div class="size-8 bg-primary rounded flex items-center justify-center text-white">
+<span class="material-symbols-outlined">shield_person</span>
+</div>
+<h2 class="text-xl font-bold tracking-tight">Commander</h2>
+</div>
+<nav class="hidden md:flex items-center gap-6">
+<a class="text-sm font-medium opacity-70 hover:opacity-100 transition-opacity" href="#">Dashboard</a>
+<a class="text-sm font-medium opacity-70 hover:opacity-100 transition-opacity" href="#">Projects</a>
+<a class="text-sm font-medium text-primary" href="#">Settings</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative hidden sm:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-sm">search</span>
+<input class="pl-9 pr-4 py-2 bg-white/5 border border-white/10 rounded-lg text-sm focus:ring-1 focus:ring-primary outline-none w-64" placeholder="Quick search..." type="text"/>
+</div>
+<button class="p-2 hover:bg-white/10 rounded-lg transition-colors relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 size-2 bg-accent-yellow rounded-full ring-2 ring-slate-900"></span>
+</button>
+<div class="size-10 rounded-full border-2 border-primary/50 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="User profile avatar with premium glow" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCtVHFKOGjyeRE4BcJ0DkhzDX0eCxuxybJ2RYw1Zti2hcV862aI6GOmXxlO9WMW_5ruEepdjkim2WFA6hOMHBQtp-AzcpxFGjy4h5CORfe4UmVEHSpqJ47Rm-sVWjoPakf-46IGxgfIT9vJrudDiwKJmcEcaQqOXXvP2GOhdd8W4MSnpC0jv6TRSlSHawXHRV6uY-McTqNfTL07iQv-heuhg6wENd_GbKLEKTQ5dbyQWrBk2jJF1UEkK0d0N0DylBgeapd5--C1QYXL"/>
+</div>
+</div>
+</header>
+<main class="flex-1 px-4 md:px-8 py-8 flex justify-center">
+<div class="w-full max-w-6xl flex flex-col lg:flex-row gap-8">
+<!-- Sidebar Navigation -->
+<aside class="w-full lg:w-64 flex flex-col gap-2">
+<div class="p-4 mb-4">
+<p class="text-xs font-bold uppercase tracking-widest text-primary mb-4">Account Settings</p>
+<nav class="flex flex-col gap-1">
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl bg-primary text-white shadow-lg shadow-primary/20 transition-all" href="#">
+<span class="material-symbols-outlined text-lg">account_circle</span>
+<span class="text-sm font-semibold">Profile Details</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-white/5 transition-all text-slate-400 hover:text-white" href="#">
+<span class="material-symbols-outlined text-lg">security</span>
+<span class="text-sm font-medium">Security</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-white/5 transition-all text-slate-400 hover:text-white" href="#">
+<span class="material-symbols-outlined text-lg">history</span>
+<span class="text-sm font-medium">Activity Log</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-white/5 transition-all text-slate-400 hover:text-white" href="#">
+<span class="material-symbols-outlined text-lg">payments</span>
+<span class="text-sm font-medium">Billing</span>
+</a>
+</nav>
+</div>
+<div class="mt-auto glass-container p-6 rounded-2xl border border-white/5">
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-accent-yellow">verified</span>
+<span class="text-xs font-bold uppercase text-accent-yellow">Elite Member</span>
+</div>
+<p class="text-xs opacity-60 leading-relaxed mb-4">You have access to all Commander Tier features.</p>
+<button class="w-full py-2 bg-white/5 hover:bg-white/10 rounded-lg text-xs font-bold transition-all border border-white/10">Manage Subscription</button>
+</div>
+</aside>
+<!-- Content Area -->
+<div class="flex-1 flex flex-col gap-8">
+<!-- Profile Header Card -->
+<section class="glass-container rounded-3xl p-8 shadow-2xl relative overflow-hidden">
+<div class="absolute top-0 right-0 p-8">
+<span class="px-4 py-1.5 bg-accent-yellow/10 text-accent-yellow border border-accent-yellow/20 rounded-full text-xs font-bold">COMMANDER TIER</span>
+</div>
+<div class="flex flex-col md:flex-row items-center gap-8 relative z-10">
+<div class="relative group">
+<div class="size-32 rounded-3xl overflow-hidden border-4 border-white/10 shadow-xl">
+<img class="w-full h-full object-cover" data-alt="Main large user profile avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDqeaj3k6faTdtjEmDLbynXj9DKWmG-vIqBB0-LYYktksUssNO3VTciLvRCJWCKnSuXHuGU38VjAZ6SjNRnBBGocqhvYQsc3aD5rwQqMuvyschKCCQldOhHBW4_niEq7ZkDIAaiwcZETlAPJKXMRt-utELx5p6i--ns-nOe_2BXqtRXOn3Wr2n_D4TukzUyra5g2xOELi_HoXfc0JjKnh-pz3fx5akS2rHDprPOWGuQ-7wc3_k2IfIgzPDw67alYSjcSS0v8f8628-c"/>
+</div>
+<button class="absolute -bottom-2 -right-2 size-10 bg-primary text-white rounded-xl flex items-center justify-center shadow-lg hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-lg">photo_camera</span>
+</button>
+</div>
+<div class="text-center md:text-left">
+<h1 class="text-3xl font-bold tracking-tight mb-1">Alex Commander</h1>
+<p class="text-slate-400 mb-4">Lead Software Engineer • San Francisco, CA</p>
+<div class="flex flex-wrap justify-center md:justify-start gap-3">
+<div class="flex items-center gap-1.5 px-3 py-1 bg-white/5 border border-white/10 rounded-lg text-xs">
+<span class="material-symbols-outlined text-sm">calendar_today</span>
+                                        Joined Jan 2023
+                                    </div>
+<div class="flex items-center gap-1.5 px-3 py-1 bg-white/5 border border-white/10 rounded-lg text-xs">
+<span class="material-symbols-outlined text-sm">terminal</span>
+                                        1.2k Commits
+                                    </div>
+</div>
+</div>
+</div>
+</section>
+<div class="grid grid-cols-1 xl:grid-cols-2 gap-8">
+<!-- Personal Information -->
+<section class="glass-container rounded-3xl p-8 flex flex-col gap-6">
+<div class="flex items-center justify-between">
+<h3 class="text-lg font-bold">Personal Information</h3>
+<button class="text-primary text-sm font-semibold hover:underline">Edit Info</button>
+</div>
+<div class="space-y-4">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div class="space-y-1.5">
+<label class="text-xs font-bold text-slate-400 uppercase tracking-wider">Full Name</label>
+<input class="w-full bg-white/5 border-none rounded-xl px-4 py-3 text-sm focus:ring-1 focus:ring-primary cursor-default" readonly="" type="text" value="Alex Commander"/>
+</div>
+<div class="space-y-1.5">
+<label class="text-xs font-bold text-slate-400 uppercase tracking-wider">Professional Email</label>
+<input class="w-full bg-white/5 border-none rounded-xl px-4 py-3 text-sm focus:ring-1 focus:ring-primary cursor-default" readonly="" type="email" value="alex@commander.dev"/>
+</div>
+</div>
+<div class="space-y-1.5">
+<label class="text-xs font-bold text-slate-400 uppercase tracking-wider">Bio</label>
+<textarea class="w-full bg-white/5 border-none rounded-xl px-4 py-3 text-sm focus:ring-1 focus:ring-primary cursor-default resize-none" readonly="" rows="3">Architecting the future of engineering management. Focused on scalability and developer happiness.</textarea>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div class="space-y-1.5">
+<label class="text-xs font-bold text-slate-400 uppercase tracking-wider">Timezone</label>
+<div class="w-full bg-white/5 rounded-xl px-4 py-3 text-sm flex justify-between items-center">
+<span>(GMT-08:00) Pacific Time</span>
+<span class="material-symbols-outlined text-sm opacity-40">expand_more</span>
+</div>
+</div>
+<div class="space-y-1.5">
+<label class="text-xs font-bold text-slate-400 uppercase tracking-wider">Language</label>
+<div class="w-full bg-white/5 rounded-xl px-4 py-3 text-sm flex justify-between items-center">
+<span>English (US)</span>
+<span class="material-symbols-outlined text-sm opacity-40">expand_more</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Activity History Timeline -->
+<section class="glass-container rounded-3xl p-8 flex flex-col h-full">
+<div class="flex items-center justify-between mb-6">
+<h3 class="text-lg font-bold">Activity History</h3>
+<button class="text-slate-400 hover:text-white transition-colors">
+<span class="material-symbols-outlined">filter_list</span>
+</button>
+</div>
+<div class="relative flex-1 space-y-8 before:absolute before:left-2.5 before:top-2 before:bottom-2 before:w-px before:bg-white/10">
+<div class="relative flex gap-6 pl-10 group">
+<div class="absolute left-0 top-1.5 size-5 rounded-full bg-primary border-4 border-slate-900 shadow-[0_0_15px_rgba(48,94,232,0.5)]"></div>
+<div class="flex-1">
+<p class="text-sm font-bold">Deployed Version 2.4.0</p>
+<p class="text-xs text-slate-400 mt-1">Strategic Infrastructure Update • <span class="text-accent-yellow">Critical</span></p>
+<p class="text-[10px] uppercase font-bold text-slate-500 mt-2">Today, 2:45 PM</p>
+</div>
+</div>
+<div class="relative flex gap-6 pl-10 group">
+<div class="absolute left-0 top-1.5 size-5 rounded-full bg-slate-700 border-4 border-slate-900 group-hover:bg-primary/50 transition-colors"></div>
+<div class="flex-1">
+<p class="text-sm font-bold opacity-80">Approved PR #882</p>
+<p class="text-xs text-slate-400 mt-1">Auth-service middleware optimization</p>
+<p class="text-[10px] uppercase font-bold text-slate-500 mt-2">Yesterday, 10:12 AM</p>
+</div>
+</div>
+<div class="relative flex gap-6 pl-10 group">
+<div class="absolute left-0 top-1.5 size-5 rounded-full bg-slate-700 border-4 border-slate-900 group-hover:bg-primary/50 transition-colors"></div>
+<div class="flex-1">
+<p class="text-sm font-bold opacity-80">Team Meeting: Sprint 12</p>
+<p class="text-xs text-slate-400 mt-1">Quarterly roadmap synchronization</p>
+<p class="text-[10px] uppercase font-bold text-slate-500 mt-2">Oct 24, 2023</p>
+</div>
+</div>
+<div class="relative flex gap-6 pl-10 group opacity-50">
+<div class="absolute left-0 top-1.5 size-5 rounded-full bg-slate-700 border-4 border-slate-900"></div>
+<div class="flex-1">
+<p class="text-sm font-bold">Account Level Upgraded</p>
+<p class="text-xs text-slate-400 mt-1">Moved to Commander Tier Elite</p>
+<p class="text-[10px] uppercase font-bold text-slate-500 mt-2">Oct 20, 2023</p>
+</div>
+</div>
+</div>
+<button class="w-full mt-6 py-2 text-xs font-bold text-slate-400 hover:text-white transition-colors flex items-center justify-center gap-2">
+                                View Full History <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</section>
+</div>
+<!-- Security & Access Section -->
+<section class="glass-container rounded-3xl p-8 shadow-xl">
+<div class="flex items-center gap-3 mb-8">
+<div class="size-12 rounded-2xl bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">gpp_maybe</span>
+</div>
+<div>
+<h3 class="text-xl font-bold">Security &amp; Access</h3>
+<p class="text-sm text-slate-400">Manage your password and account authentication methods.</p>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<div class="p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-primary/30 transition-all flex flex-col gap-4">
+<div class="flex items-center justify-between">
+<h4 class="font-bold flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">password</span>
+                                        Change Password
+                                    </h4>
+<span class="text-[10px] font-bold text-slate-500 uppercase">Last updated 3 months ago</span>
+</div>
+<p class="text-sm text-slate-400 leading-relaxed">Ensure your account is protected with a long, unique password that is updated regularly.</p>
+<button class="mt-2 w-fit px-6 py-2 bg-primary rounded-xl text-sm font-bold text-white shadow-lg shadow-primary/20 hover:scale-105 transition-transform">Update Password</button>
+</div>
+<div class="p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-accent-yellow/30 transition-all flex flex-col gap-4">
+<div class="flex items-center justify-between">
+<h4 class="font-bold flex items-center gap-2">
+<span class="material-symbols-outlined text-accent-yellow">vibration</span>
+                                        2-Factor Authentication
+                                    </h4>
+<div class="relative inline-flex items-center cursor-pointer">
+<div class="w-11 h-6 bg-primary rounded-full ring-2 ring-primary/20"></div>
+<div class="absolute left-6 top-1 size-4 bg-white rounded-full"></div>
+</div>
+</div>
+<p class="text-sm text-slate-400 leading-relaxed">Add an extra layer of security to your account. We'll ask for a code whenever you sign in.</p>
+<button class="mt-2 w-fit px-6 py-2 border border-white/10 rounded-xl text-sm font-bold hover:bg-white/5 transition-colors">Manage 2FA Devices</button>
+</div>
+</div>
+<!-- Active Sessions -->
+<div class="mt-8 pt-8 border-t border-white/10">
+<h4 class="text-sm font-bold uppercase tracking-widest text-slate-500 mb-6">Active Sessions</h4>
+<div class="space-y-4">
+<div class="flex items-center justify-between p-4 bg-white/5 rounded-2xl border border-white/5">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined size-10 flex items-center justify-center bg-white/10 rounded-xl text-primary">desktop_windows</span>
+<div>
+<p class="text-sm font-bold">MacBook Pro 16" • San Francisco, US</p>
+<p class="text-xs text-slate-400">Chrome Browser • Active Now</p>
+</div>
+</div>
+<span class="px-3 py-1 bg-primary/20 text-primary text-[10px] font-bold rounded-full border border-primary/20">CURRENT DEVICE</span>
+</div>
+<div class="flex items-center justify-between p-4 bg-white/5 rounded-2xl border border-white/5 group">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined size-10 flex items-center justify-center bg-white/10 rounded-xl text-slate-400">smartphone</span>
+<div>
+<p class="text-sm font-bold opacity-80">iPhone 15 Pro • London, UK</p>
+<p class="text-xs text-slate-400">Commander Mobile App • 2 hours ago</p>
+</div>
+</div>
+<button class="px-4 py-2 hover:bg-red-500/10 text-red-500 text-xs font-bold rounded-xl transition-colors border border-transparent hover:border-red-500/20">Log Out</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Footer Actions -->
+<div class="flex flex-col sm:flex-row items-center justify-between gap-4 py-6 px-2">
+<button class="text-red-500/60 hover:text-red-500 text-sm font-bold flex items-center gap-2 transition-colors">
+<span class="material-symbols-outlined text-sm">delete_forever</span>
+                            Delete Account
+                        </button>
+<div class="flex gap-4">
+<button class="px-8 py-3 bg-white/5 hover:bg-white/10 rounded-xl text-sm font-bold border border-white/10 transition-all">Cancel</button>
+<button class="px-8 py-3 bg-primary hover:bg-primary/90 rounded-xl text-sm font-bold text-white shadow-xl shadow-primary/30 transition-all transform hover:-translate-y-0.5">Save Changes</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>
